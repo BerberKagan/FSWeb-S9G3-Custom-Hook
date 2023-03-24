@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import useLocalStorage from "../hooks/localStorageKullan";
 import axios from "axios";
 
 import Charts from "./components/Charts";
@@ -6,7 +7,12 @@ import Navbar from "./components/Navbar";
 
 const App = () => {
   const [coinData, setCoinData] = useState([]);
-  const [geceModu, setGeceModu] = useState(false);
+  // const [geceModu, setGeceModu] = useState(false);
+  const [geceModu, setGeceModu] = useLocalStorage("nightMode", false);
+  const [userInfo, setUserInfo] = useLocalStorage("loggedInUser", {
+    userName: "Not found!", 
+    userEmail: "abc@abc.com"
+  });
 
   useEffect(() => {
     axios
